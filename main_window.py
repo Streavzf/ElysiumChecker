@@ -23,8 +23,25 @@ class MainWindow(QMainWindow):
         self._nav_buttons = {}
         self._current_page = None
 
+        self._set_dark_titlebar()
+
         self._build_ui()
         self._navigate("info")
+
+    # ------------------------------------------------------------------
+    def _set_dark_titlebar(self):
+        try:
+            import ctypes
+            import sys
+            if sys.platform != "win32":
+                return
+            hwnd = int(self.winId())
+            set_window_attribute = ctypes.windll.dwmapi.DwmSetWindowAttribute
+            res = set_window_attribute(hwnd, 20, ctypes.byref(ctypes.c_int(1)), ctypes.sizeof(ctypes.c_int))
+            if res != 0:
+                set_window_attribute(hwnd, 19, ctypes.byref(ctypes.c_int(1)), ctypes.sizeof(ctypes.c_int))
+        except Exception:
+            pass
 
     # ------------------------------------------------------------------
     def _build_ui(self):

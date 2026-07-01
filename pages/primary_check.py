@@ -1,11 +1,11 @@
 import os
-import ctypes
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QGridLayout, QMessageBox
 )
 from PyQt5.QtCore import Qt
 import styles
+from utils.launcher import launch_exe
 from utils.paths import tool_path
 
 PRIMARY_TOOLS = [
@@ -68,11 +68,13 @@ class PrimaryCheckPage(QWidget):
     def _launch(self, exe: str, name: str):
         path = tool_path(exe)
         if not os.path.isfile(path):
-            QMessageBox.warning(self, "Утилита не найдена",
-                f"Файл не найден:\n{path}\n\nПоместите .exe в папку tools\\")
+            QMessageBox.warning(
+                self,
+                "Утилита не найдена",
+                f"Файл не найден:\n{path}\n\nПоместите .exe в папку tools\\",
+            )
             return
         try:
-            ctypes.windll.shell32.ShellExecuteW(
-                None, "runas", path, None, os.path.dirname(path), 1)
+            launch_exe(path)
         except Exception as e:
             QMessageBox.critical(self, "Ошибка запуска", str(e))

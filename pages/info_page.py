@@ -127,8 +127,12 @@ class InfoPage(QWidget):
 
     def _open_signatures(self):
         try:
-            from utils.signatures_html import open_signatures
-            open_signatures()
+            from utils.signatures_window import SignaturesWindow
+            if not hasattr(self, '_sig_window') or self._sig_window is None or not self._sig_window.isVisible():
+                self._sig_window = SignaturesWindow()
+            self._sig_window.show()
+            self._sig_window.raise_()
+            self._sig_window.activateWindow()
         except Exception as e:
             from PyQt5.QtWidgets import QMessageBox
             QMessageBox.critical(self, "Ошибка", str(e))

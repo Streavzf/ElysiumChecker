@@ -1,23 +1,23 @@
 # ── Elysium Server Color Palette ──────────────────────────────────────
-# Dark purple-black base, hot-pink/magenta accent, violet secondary
+# Dark green-black base, bright cyan/green accent, teal secondary
 
-BG_MAIN        = "#0f0619"   # very dark purple-black
-BG_SIDEBAR     = "#0c0416"   # even darker sidebar
-BG_CARD        = "#170828"   # card background
-BG_CARD_HOVER  = "#1d0f33"
-ACCENT         = "#d4187a"   # hot pink  (primary CTA)
-ACCENT_HOVER   = "#e91e8c"   # brighter pink on hover
-ACCENT_LIGHT   = "#f060b0"   # lighter pink for icons/highlights
-SECONDARY      = "#7b2fb5"   # purple secondary
-TEXT_PRIMARY   = "#f0e4f8"   # near-white with slight lavender
-TEXT_SECONDARY = "#a880c8"   # muted lavender
-TEXT_MUTED     = "#5a3878"   # very muted purple
+BG_MAIN        = "#041612"   # very dark cyan-black
+BG_SIDEBAR     = "#02100d"   # even darker sidebar
+BG_CARD        = "#07201b"   # card background
+BG_CARD_HOVER  = "#0a2a24"
+ACCENT         = "#2ae895"   # bright green-cyan (primary CTA)
+ACCENT_HOVER   = "#4cf5aa"   # brighter on hover
+ACCENT_LIGHT   = "#8fffd0"   # lighter for icons/highlights
+SECONDARY      = "#0abfbc"   # teal secondary
+TEXT_PRIMARY   = "#e0f8f1"   # near-white with slight cyan
+TEXT_SECONDARY = "#7bc8b4"   # muted cyan
+TEXT_MUTED     = "#357a66"   # very muted cyan
 COLOR_GREEN    = "#2ec27e"
 COLOR_RED      = "#e05252"
 COLOR_YELLOW   = "#e0a050"
-BORDER         = "#2d1050"   # subtle purple border
-NAV_ACTIVE_BG  = "#200838"   # active nav highlight
-NAV_HOVER_BG   = "#170530"
+BORDER         = "#0e4034"   # subtle green border
+NAV_ACTIVE_BG  = "#0c3026"   # active nav highlight
+NAV_HOVER_BG   = "#08261e"
 
 MAIN_STYLE = f"""
 QMainWindow, QWidget {{
@@ -169,7 +169,7 @@ QPushButton {{
 ACCENT_BUTTON_STYLE = f"""
 QPushButton {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 {SECONDARY}, stop:1 {ACCENT});
+        stop:0 #09a6a3, stop:1 #1dbf7d);
     color: white;
     border: none;
     border-radius: 8px;
@@ -179,14 +179,14 @@ QPushButton {{
 }}
 QPushButton:hover {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 #9b3fd5, stop:1 {ACCENT_HOVER});
+        stop:0 #0cc2bf, stop:1 #23d98f);
 }}
 QPushButton:pressed {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-        stop:0 #5a1f90, stop:1 #b01060);
+        stop:0 #068280, stop:1 #149c63);
 }}
 QPushButton:disabled {{
-    background: #2a1040;
+    background: #0b2e25;
     color: {TEXT_MUTED};
 }}
 """
@@ -194,7 +194,7 @@ QPushButton:disabled {{
 TOOL_BUTTON_STYLE = f"""
 QPushButton {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 {SECONDARY}, stop:1 {ACCENT});
+        stop:0 #09a6a3, stop:1 #1dbf7d);
     color: white;
     border: none;
     border-radius: 8px;
@@ -205,11 +205,11 @@ QPushButton {{
 }}
 QPushButton:hover {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 #9b3fd5, stop:1 {ACCENT_HOVER});
+        stop:0 #0cc2bf, stop:1 #23d98f);
 }}
 QPushButton:pressed {{
     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-        stop:0 #5a1f90, stop:1 #b01060);
+        stop:0 #068280, stop:1 #149c63);
 }}
 """
 

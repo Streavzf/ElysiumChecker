@@ -1,17 +1,16 @@
 import os
-import ctypes
 from PyQt5.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QGridLayout, QMessageBox
 )
 from PyQt5.QtCore import Qt
 import styles
+from utils.launcher import launch_exe
 from utils.paths import tool_path
 
-# (name, exe, verb)
 ADDITIONAL_TOOLS = [
-    ("RegScanner",           "RegScanner.exe",           "runas"),
-    ("BrowserDownloadsView", "BrowserDownloadsView.exe", "open"),
+    ("RegScanner",           "RegScanner.exe"),
+    ("BrowserDownloadsView", "BrowserDownloadsView.exe"),
 ]
 
 
@@ -49,27 +48,29 @@ class AdditionalCheckPage(QWidget):
 
         grid = QGridLayout()
         grid.setSpacing(10)
-        for idx, (name, exe, verb) in enumerate(ADDITIONAL_TOOLS):
+        for idx, (name, exe) in enumerate(ADDITIONAL_TOOLS):
             row, col = divmod(idx, 3)
             btn = QPushButton(f"{idx + 1}.  {name}")
             btn.setFixedHeight(52)
             btn.setStyleSheet(styles.TOOL_BUTTON_STYLE)
             btn.setCursor(Qt.PointingHandCursor)
-            btn.clicked.connect(lambda checked, e=exe, n=name, v=verb: self._launch(e, n, v))
+            btn.clicked.connect(lambda checked, e=exe, n=name: self._launch(e, n))
             grid.addWidget(btn, row, col)
 
         card_layout.addLayout(grid)
         layout.addWidget(card)
         layout.addStretch()
 
-    def _launch(self, exe: str, name: str, verb: str = "runas"):
+    def _launch(self, exe: str, name: str):
         path = tool_path(exe)
         if not os.path.isfile(path):
-            QMessageBox.warning(self, "Утилита не найдена",
-                f"Файл не найден:\n{path}\n\nПоместите .exe в папку tools\\")
+            QMessageBox.warning(
+                self,
+                "Утилита не найдена",
+                f"Файл не найден:\n{path}\n\nПоместите .exe в папку tools\\",
+            )
             return
         try:
-            ctypes.windll.shell32.ShellExecuteW(
-                None, verb, path, None, os.path.dirname(path), 1)
+            launch_exe(path)
         except Exception as e:
             QMessageBox.critical(self, "Ошибка запуска", str(e))

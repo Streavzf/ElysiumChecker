@@ -56,11 +56,11 @@ def _build_html() -> str:
             if group == "Everything":
                 icon_class = "icon-everything"
                 emoji      = "🔍"
-                title_color = "#e91e8c"
+                title_color = "#2ae895"
             else:
                 icon_class = "icon-systeminformer"
                 emoji      = "⚙️"
-                title_color = "#c084fc"
+                title_color = "#0abfbc"
             cards_html += f'<div class="section-label"><span>{group}</span></div>\n'
 
         cards_html += f"""
@@ -95,15 +95,15 @@ def _build_html() -> str:
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
   :root {{
-    --bg:        #0a0414;
-    --bg2:       #110820;
-    --card:      #15092a;
-    --border:    #2a0f4a;
-    --accent1:   #e91e8c;
-    --accent2:   #7b2fb5;
-    --text:      #f0e4f8;
-    --muted:     #a070c0;
-    --dim:       #4a2870;
+    --bg:        #02100d;
+    --bg2:       #041612;
+    --card:      #07201b;
+    --border:    #0e4034;
+    --accent1:   #2ae895;
+    --accent2:   #0abfbc;
+    --text:      #e0f8f1;
+    --muted:     #7bc8b4;
+    --dim:       #357a66;
     --green:     #2ec27e;
     --mono:      'Consolas', 'Courier New', monospace;
   }}
@@ -120,7 +120,7 @@ def _build_html() -> str:
 
   /* ── Top bar ── */
   .topbar {{
-    background: linear-gradient(135deg, #0d0520 0%, #180535 100%);
+    background: linear-gradient(135deg, #02100d 0%, #051c17 100%);
     border-bottom: 1px solid var(--border);
     padding: 22px 48px;
     display: flex;
@@ -148,7 +148,7 @@ def _build_html() -> str:
   .topbar-text h1 {{
     font-size: 17px;
     font-weight: 700;
-    background: linear-gradient(90deg, #c084fc, var(--accent1));
+    background: linear-gradient(90deg, var(--accent2), var(--accent1));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
@@ -196,8 +196,8 @@ def _build_html() -> str:
     transition: border-color .2s, box-shadow .2s;
   }}
   .card:hover {{
-    border-color: #4a1880;
-    box-shadow: 0 0 24px rgba(123,47,181,.15);
+    border-color: #125746;
+    box-shadow: 0 0 24px rgba(10,191,188,.15);
   }}
 
   .card-header {{
@@ -227,12 +227,12 @@ def _build_html() -> str:
     flex-shrink: 0;
   }}
   .icon-everything {{
-    background: rgba(233,30,140,.15);
-    border: 1px solid rgba(233,30,140,.25);
+    background: rgba(42,232,149,.15);
+    border: 1px solid rgba(42,232,149,.25);
   }}
   .icon-systeminformer {{
-    background: rgba(123,47,181,.2);
-    border: 1px solid rgba(123,47,181,.35);
+    background: rgba(10,191,188,.2);
+    border: 1px solid rgba(10,191,188,.35);
   }}
 
   .card-title {{
@@ -276,7 +276,7 @@ def _build_html() -> str:
     font-family: var(--mono);
     font-size: 12.5px;
     line-height: 1.8;
-    color: #c8a8e8;
+    color: #a8e8d8;
     word-break: break-all;
     cursor: text;
     user-select: all;

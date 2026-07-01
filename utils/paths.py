@@ -15,6 +15,18 @@ def base_dir() -> str:
 
 def tool_path(filename: str) -> str:
     """Full path to a tool executable."""
+    if getattr(sys, "frozen", False):
+        exe_dir = os.path.dirname(sys.executable)
+        candidates = [
+            os.path.join(exe_dir, "tools", filename),
+            os.path.join(os.getcwd(), "tools", filename),
+            os.path.join(base_dir(), "tools", filename),
+        ]
+        for path in candidates:
+            if os.path.isfile(path):
+                return path
+        return candidates[0]
+
     return os.path.join(base_dir(), "tools", filename)
 
 
